@@ -1,0 +1,72 @@
+body{
+    margin: 0;
+}
+
+#baseLayer{
+    background: black;
+    z-index: 1;
+    position: absolute;   
+}
+
+#playerLayer{
+    background: transparent;
+    z-index: 3;
+    position: absolute;
+}
+
+#buildingLayer{
+    z-index: 2;
+    position: absolute;
+}
+#enemyLayer{
+    z-index: 4;
+    position: absolute;
+}
+
+#textLayer{
+    z-index:7;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(0, 181, 187, 0.832);
+    border-radius: 2px;
+    
+}
+
+.buttons {
+      position: absolute;
+      top: 690px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index:8;
+    }
+
+    .buttons button {
+      padding: 8px 16px;
+      font-size: 16px;
+      background-color: #171717;
+      border: 3px solid rgb(0, 181, 187);
+      border-radius: 3px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
+      color: rgb(0, 181, 187);
+      
+    }
+
+#bulletLayer{
+    z-index: 5;
+    position: absolute;
+    
+}
+
+#keyLayer{
+    z-index: 2;
+    position: absolute;
+}
+
+#endLayer{
+    z-index: 20;
+    position: relative;
+}
