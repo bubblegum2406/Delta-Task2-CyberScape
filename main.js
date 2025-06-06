@@ -1,3 +1,4 @@
+
 const background_canvas=document.getElementById("baseLayer")
 background_canvas.width=window.innerWidth
 background_canvas.height=window.innerHeight
@@ -46,13 +47,9 @@ key_canvas.width=window.innerWidth
 key_canvas.height=window.innerHeight
 const c_key=key_canvas.getContext('2d')
 
-const end_canvas=document.getElementById("endLayer")
-end_canvas.width=window.innerWidth
-end_canvas.height=window.innerHeight
-const c_end=end_canvas.getContext('2d')
 
-let highscore=localStorage.getItem("HighScore")
 
-if(highscore==null){
-    highscore=0
-}
+
+let highscore=localStorage.getItem("HighScore") || 0
+console.log(highscore)
+

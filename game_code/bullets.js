@@ -4,7 +4,11 @@ let bulletDirection = 0; // 0 = forward, -1 = left, 1 = right (relative to playe
 let enemy_respawn=[]
 
 const updateBullets = () => {
-    if (!state) return;
+    if (!state) {
+        // Don't clear or process bullets when paused
+        requestAnimationFrame(updateBullets);
+        return;
+    }
     
     c_bullet.clearRect(0, 0, maxWidth, maxHeight);
     
@@ -37,21 +41,38 @@ const updateBullets = () => {
         
         // Check for collisions with enemy radars
         let hitEnemy = false;
+        
         for (let j = 0; j < enemies.length; j++) {
-            const enemyPos = enemies[j];
-            const dx = bullet.x - enemyPos.x;
-            const dy = bullet.y - enemyPos.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            
-            if (distance < enemy.radius) {
-                // Remove both bullet and enemy
-                bullets.splice(i, 1);
-                enemy_respawn.push(enemies[j])
-                enemies.splice(j, 1);
-                hitEnemy = true;
-                break;
-            }
+    const enemyPos = enemies[j];
+    const dx = bullet.x - enemyPos.x;
+    const dy = bullet.y - enemyPos.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    // Check if bullet is within radar radius AND within the sweeping angle
+    if (distance < enemy.radius) {
+        const angleToBullet = Math.atan2(dy, dx);
+        const normalizedBulletAngle = (angleToBullet + 2 * Math.PI) % (2 * Math.PI);
+        const normalizedRadarStart = (enemyPos.angle + 2 * Math.PI) % (2 * Math.PI);
+        const normalizedRadarEnd = (enemyPos.angle + enemy.sweep + 2 * Math.PI) % (2 * Math.PI);
+        
+        let isInSweep = false;
+        if (normalizedRadarStart < normalizedRadarEnd) {
+            isInSweep = normalizedBulletAngle >= normalizedRadarStart && 
+                       normalizedBulletAngle <= normalizedRadarEnd;
+        } else {
+            isInSweep = normalizedBulletAngle >= normalizedRadarStart || 
+                       normalizedBulletAngle <= normalizedRadarEnd;
         }
+        
+        if (isInSweep) {
+            bullets.splice(i, 1);
+            enemy_respawn.push(enemies[j]);
+            enemies.splice(j, 1);
+            hitEnemy = true;
+            break;
+        }
+    }
+}
         
         if (hitEnemy) continue;
         

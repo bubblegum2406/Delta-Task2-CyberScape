@@ -21,13 +21,13 @@ const updateKeys=()=>{
 const checkDataShard=()=>{
     if(!dataShardMined){
         c_key.beginPath()
-        c_key.arc(maxWidth/2,maxHeight/2,20,0,Math.PI*2)
+        c_key.arc(maxWidth/2,maxHeight/2,15,0,Math.PI*2)
         c_key.fillStyle="red"
         c_key.fill()
     }
     else if(!carryDataShard && key.count==0){
         c_key.beginPath()
-        c_key.arc(maxWidth/2,maxHeight/2,20,0,Math.PI*2)
+        c_key.arc(maxWidth/2,maxHeight/2,15,0,Math.PI*2)
         c_key.fillStyle="blue"
         c_key.fill()
     }
@@ -36,9 +36,9 @@ const checkDataShard=()=>{
         c_key.clearRect(0,0,maxWidth,maxHeight)
         player.color="blue"
         carryDataShard=true
-        dataShardMined=false
+       
     }
-    console.log(key.count)
+    
 }
 
 const checkDataShardLocation=()=>{
@@ -54,6 +54,7 @@ const checkDataShardLocation=()=>{
                         key.count+=4
                         placeKeys()
                         carryDataShard=false
+                        dataShardMined=false
                         refreshScores()
                     }
                 }

@@ -17,7 +17,6 @@ const placeKeys=()=>{
     let tempKeyCount=key.count
     
     while(tempKeyCount>0){
-    let radius=4
     let x =Math.random() * maxWidth
     let y = Math.random() *maxHeight
     for(let i=0;i<maxHeight;i=i+190){

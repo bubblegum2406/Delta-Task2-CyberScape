@@ -39,7 +39,7 @@ body{
       display: flex;
       justify-content: center;
       gap: 20px;
-      z-index:8;
+      z-index:11;
     }
 
     .buttons button {
@@ -54,6 +54,15 @@ body{
       color: rgb(0, 181, 187);
       
     }
+#textview{
+    z-index: 100;
+    font-size: 200px;
+    position:absolute;
+    top: 250px;
+    left:360px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
 
 #bulletLayer{
     z-index: 5;
@@ -67,6 +76,6 @@ body{
 }
 
 #endLayer{
-    z-index: 20;
-    position: relative;
+    z-index:10;
+    position: absolute;
 }

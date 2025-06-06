@@ -9,7 +9,7 @@ const refreshScores=()=>{
      c_text.fillText("System Health: "+system.health, 20, 70)
      c_text.fillText("Keys: "+key.count, 20, 100)
      c_text.fillText("Shards Delivered: "+system.shards, 20, 130)
-     c_text.fillText("Highscore: "+highscore, 20, 160)
+     c_text.fillText("Highscore: "+(system.highscore || 0), 20, 160)
 }
 
 
@@ -31,6 +31,7 @@ resumeBtn.addEventListener("click",()=>{
     if(!state){
         state=true
         drawEnemy()
+        updateBullets()
     }
 })
 

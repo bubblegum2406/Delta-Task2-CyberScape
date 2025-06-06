@@ -4,7 +4,7 @@ const player={
     xPos:maxWidth/2,
     yPos:maxHeight/2,
     speed:5,
-    health:0
+    health:100
 }
 
 
@@ -12,7 +12,7 @@ const player={
 const system={
     health:50,
     shards:0,
-    highscore:JSON.parse(localStorage.getItem("Highscore"))
+    highscore:localStorage.getItem("Highscore") || 0
 }
 
 const BaseStationCircle=(x,y)=>{

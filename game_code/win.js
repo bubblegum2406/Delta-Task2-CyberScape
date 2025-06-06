@@ -1,26 +1,22 @@
 const checkWin=()=>{
-if(player.health==0 || system.health==20 ){
+if(player.health<=0 || system.health<=20 ){
     state=false
     resumeBtn.style.display="none"
     pauseBtn.style.display="none"
-    c_end.clearRect(0,0,maxWidth,maxHeight)
-
-    c_end.font="50px Helvetica"
-    c_end.fillStyle = "rgb(0, 181, 187)"
-    c_end.fillText("You Lose",maxWidth/2,maxHeight/2)
+    document.getElementById("textview").innerHTML="You Lose"
 }
 
-if(system.health==100){
+if(system.health>=100){
     state=false
     resumeBtn.style.display="none"
     pauseBtn.style.display="none"
-    c_end.clearRect(0,0,maxWidth,maxHeight)
-    c_end.font="50px Helvetica"
-    c_end.fillStyle = "rgb(0, 181, 187)"
-    c_end.fillText("You Win",0,0)
-    if(system.shards>=highscore){
-        localStorage.setItem("Highscore",system.shards)
+    document.getElementById("textview").innerHTML="You Win"
+    const currentHighscore = parseInt(localStorage.getItem("Highscore") || 0);
+    if(system.shards > currentHighscore){
+        localStorage.setItem("Highscore", system.shards.toString());
     }
+    system.highscore = Math.max(system.shards, currentHighscore);
+    refreshScores();
 }
 }
 
